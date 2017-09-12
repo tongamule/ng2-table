@@ -3,7 +3,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'ng-table',
-  style: `
+  styles: `
     table td a {
       cursor: pointer;
     }
