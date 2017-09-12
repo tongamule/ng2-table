@@ -7,7 +7,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
            role="grid" style="width: 100%;">
       <thead>
         <tr role="row">
-          <th *ngFor="let column of columns" [ngTableSorting]="config" [column]="column" 
+          <th *ngFor="let column of columns" [ngTableSorting]="config" [column]="column"
               (sortChanged)="onChangeTable($event)" ngClass="{{column.className || ''}}">
             {{column.title}}
             <i *ngIf="config && column.sort" class="pull-right fa"
@@ -25,8 +25,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
                  (tableChanged)="onChangeTable(config)"/>
         </td>
       </tr>
-        <tr *ngFor="let row of rows">      
-            <ng-container *ngFor="let column of columns" >     
+        <tr *ngFor="let row of rows">
+            <ng-container *ngFor="let column of columns" >
                 <td *ngIf="!column.actions" (click)="cellClick(row, column.name)" [innerHtml]="sanitize(getData(row, column.name))"></td>
 
                 <td *ngIf="column.actions">
@@ -35,7 +35,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
                              <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.title }}
                         </a>
                     </ng-container>
-                    
+
                     <ng-container *ngIf="column.actions.type === 'group'">
                         <div class="btn-group" role="group">
                             <a  *ngFor="let actionButton of column.actions.buttons" [className]="actionButton.styleClass" (click)="actionClick(actionButton.action, row, column)">
@@ -49,17 +49,17 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
                         <button id="single-button" type="button" [className]="column.actions.dropdownStyleClass" dropdownToggle>
                            {{ column.actions.dropdownTitle }} <span class="caret"></span>
                         </button>
-                        <ul dropdownMenu role="menu" aria-labelledby="single-button">      
+                        <ul *dropdownMenu role="menu" aria-labelledby="single-button">
                             <li role="menuitem" *ngFor="let actionButton of column.actions.buttons">
                                 <a class="dropdown-item" (click)="actionClick(actionButton.action, row, column)">
                                     <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.title }}
                                 </a>
-                            </li>                             
+                            </li>
                         </ul>
-                        </div>                        
+                        </div>
                     </ng-container>
-            
-                </td>            
+
+                </td>
             </ng-container>
         </tr>
       </tbody>
