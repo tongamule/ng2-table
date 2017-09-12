@@ -39,7 +39,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
                 <td *ngIf="column.actions">
                     <ng-container *ngIf="column.actions.type === 'simple'">
-                        <a  *ngFor="let actionButton of column.actions.buttons" [title]="{{ actionButton.title }}"
+                        <a  *ngFor="let actionButton of column.actions.buttons" title="{{ actionButton.title }}"
                           [className]="actionButton.styleClass" (click)="actionClick(actionButton.action, row, column)">
                              <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.label }}
                         </a>
@@ -47,7 +47,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
                     <ng-container *ngIf="column.actions.type === 'group'">
                         <div class="btn-group" role="group">
-                          <a  *ngFor="let actionButton of column.actions.buttons" [title]="{{ actionButton.title }}"
+                          <a  *ngFor="let actionButton of column.actions.buttons" title="{{ actionButton.title }}"
                             [className]="actionButton.styleClass" (click)="actionClick(actionButton.action, row, column)">
                               <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.label }}
                           </a>
@@ -61,7 +61,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
                         </button>
                         <ul *dropdownMenu role="menu" aria-labelledby="single-button" class="dropdown-menu">
                             <li role="menuitem" *ngFor="let actionButton of column.actions.buttons">
-                                <a class="dropdown-item" (click)="actionClick(actionButton.action, row, column)" [title]="{{ actionButton.title }}">
+                                <a class="dropdown-item" (click)="actionClick(actionButton.action, row, column)" title="{{ actionButton.title }}">
                                     <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.label }}
                                 </a>
                             </li>
