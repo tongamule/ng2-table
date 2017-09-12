@@ -3,7 +3,13 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'ng-table',
-  template: `<table class="table dataTable" ngClass="{{config.className || ''}}"
+  style: `
+    table td a {
+      cursor: pointer;
+    }
+  `,
+  template: `
+    <table class="table dataTable" ngClass="{{config.className || ''}}"
            role="grid" style="width: 100%;">
       <thead>
         <tr role="row">
@@ -31,28 +37,30 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
                 <td *ngIf="column.actions">
                     <ng-container *ngIf="column.actions.type === 'simple'">
-                        <a  *ngFor="let actionButton of column.actions.buttons" [className]="actionButton.styleClass" (click)="actionClick(actionButton.action, row, column)">
-                             <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.title }}
+                        <a  *ngFor="let actionButton of column.actions.buttons" [title]="{{ actionButton.title }}"
+                          [className]="actionButton.styleClass" (click)="actionClick(actionButton.action, row, column)">
+                             <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.label }}
                         </a>
                     </ng-container>
 
                     <ng-container *ngIf="column.actions.type === 'group'">
                         <div class="btn-group" role="group">
-                            <a  *ngFor="let actionButton of column.actions.buttons" [className]="actionButton.styleClass" (click)="actionClick(actionButton.action, row, column)">
-                                <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i>  {{ actionButton.title }}
-                            </a>
+                          <a  *ngFor="let actionButton of column.actions.buttons" [title]="{{ actionButton.title }}"
+                            [className]="actionButton.styleClass" (click)="actionClick(actionButton.action, row, column)">
+                              <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.label }}
+                          </a>
                         </div>
                     </ng-container>
 
                     <ng-container *ngIf="column.actions.type === 'dropdown'">
                         <div class="btn-group" dropdown>
-                        <button id="single-button" type="button" [className]="column.actions.dropdownStyleClass" dropdownToggle>
+                        <button id="single-button" type="button" [className]="column.actions.dropdownStyleClass" dropdownToggle class="dropdown-toggle">
                            {{ column.actions.dropdownTitle }} <span class="caret"></span>
                         </button>
-                        <ul *dropdownMenu role="menu" aria-labelledby="single-button">
+                        <ul *dropdownMenu role="menu" aria-labelledby="single-button" class="dropdown-menu">
                             <li role="menuitem" *ngFor="let actionButton of column.actions.buttons">
-                                <a class="dropdown-item" (click)="actionClick(actionButton.action, row, column)">
-                                    <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.title }}
+                                <a class="dropdown-item" (click)="actionClick(actionButton.action, row, column)" [title]="{{ actionButton.title }}">
+                                    <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.label }}
                                 </a>
                             </li>
                         </ul>
