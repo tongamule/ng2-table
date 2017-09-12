@@ -44,7 +44,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
                              <i class="" ngClass="{{actionButton.styleIcon || ''}}"></i> {{ actionButton.label }}
                         </a>
                     </ng-container>
-
                     <ng-container *ngIf="column.actions.type === 'group'">
                         <div class="btn-group" role="group">
                           <a  *ngFor="let actionButton of column.actions.buttons" title="{{ actionButton.title }}"
