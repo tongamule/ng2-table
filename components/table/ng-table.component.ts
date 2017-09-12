@@ -3,11 +3,13 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'ng-table',
-  styles: `
-    table td a {
-      cursor: pointer;
-    }
-  `,
+  styles: [
+    `
+      table td a {
+        cursor: pointer;
+      }
+    `
+  ],
   template: `
     <table class="table dataTable" ngClass="{{config.className || ''}}"
            role="grid" style="width: 100%;">
