@@ -37,7 +37,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
             <ng-container *ngFor="let column of columns" >
                 <td *ngIf="!column.actions" (click)="cellClick(row, column.name)" [innerHtml]="sanitize(getData(row, column.name))"></td>
 
-                <td *ngIf="column.actions">
+                <td *ngIf="column.actions" class="justify-content-center">
                     <ng-container *ngIf="column.actions.type === 'simple'">
                         <a  *ngFor="let actionButton of column.actions.buttons" title="{{ actionButton.title }}"
                           [className]="actionButton.styleClass" (click)="actionClick(actionButton.action, row, column)">
